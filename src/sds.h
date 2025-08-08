@@ -90,9 +90,19 @@ struct __attribute__((__packed__)) sdshdr64
 #define SDS_TYPE_64 4
 #define SDS_TYPE_MASK 7
 #define SDS_TYPE_BITS 3
-#define SDS_HDR_VAR(T, s) struct sdshdr##T *sh = (void *)((s) - (sizeof(struct sdshdr##T)));
-#define SDS_HDR(T, s) ((struct sdshdr##T *)((s) - (sizeof(struct sdshdr##T))))
 #define SDS_TYPE_5_LEN(f) ((f) >> SDS_TYPE_BITS)
+
+#ifdef __cplusplus
+    #define SDS_CAST(type, expr) static_cast<type>(static_cast<void*>(expr))
+#else
+    #define SDS_CAST(type, expr) ((type)(expr))
+#endif
+
+#define SDS_HDR_VAR(T, s) \
+    struct sdshdr##T *sh = SDS_CAST(struct sdshdr##T *, (char*)(s) - sizeof(struct sdshdr##T))
+
+#define SDS_HDR(T, s) \
+    (SDS_CAST(struct sdshdr##T *, (char*)(s) - sizeof(struct sdshdr##T)))
 
 static inline size_t sdslen(const sds s)
 {
