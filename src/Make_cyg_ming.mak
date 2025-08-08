@@ -761,11 +761,6 @@ libvim.a: $(OUTDIR) $(OBJ)
 	$(AR) rcs libvim.a $(OBJ)
 
 installlibvim: libvim.a
-	mkdir -p $(DEST_INCLUDE)
-	$(INSTALL_PROG) *.h $(DEST_INCLUDE)
-	mkdir -p $(DEST_INCLUDE)/proto
-	$(INSTALL_PROG) proto/*.pro $(DEST_INCLUDE)/proto
-	$(INSTALL_PROG) libvim.a $(DEST_LIB)
 
 TEST_SRC = $(wildcard apitest/*.c)
 TEST_COLLATERAL = $(wildcard apitest/collateral/*.*)

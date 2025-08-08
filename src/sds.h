@@ -40,6 +40,11 @@ extern const char *SDS_NOINIT;
 #include <stdint.h>
 #include <sys/types.h>
 
+#if defined(_MSC_VER) && !defined(SSIZE_T_DEFINED)
+typedef intptr_t ssize_t;
+#define SSIZE_T_DEFINED
+#endif
+
 typedef char *sds;
 
 /* Note: sdshdr5 is never used, we just access the flags byte directly.
