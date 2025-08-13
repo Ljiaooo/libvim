@@ -129,6 +129,11 @@ void vimSetBufferUpdateCallback(BufferUpdateCallback f)
   bufferUpdateCallback = f;
 }
 
+void vimSetWriteRedirectCallback(WriteRedirectCallback f)
+{
+  writeRedirectCallback = f;
+}
+
 void vimSetAutoCommandCallback(AutoCommandCallback f)
 {
   autoCommandCallback = f;

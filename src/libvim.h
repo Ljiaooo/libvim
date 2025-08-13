@@ -88,6 +88,12 @@ void vimBufferSetReadOnly(buf_T *buf, int modifiable);
 
 void vimSetBufferUpdateCallback(BufferUpdateCallback bufferUpdate);
 
+/**
+ * Used by SnapVim, vim write file disabled
+ * Command leading to file writing will execute copying text to clipboard
+ */
+ void vimSetWriteRedirectCallback(WriteRedirectCallback writeRedirectCallback);
+
 /***
  * Autocommands
  ***/
