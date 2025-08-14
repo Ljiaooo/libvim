@@ -14,7 +14,7 @@ make -f Make_cyg_ming.mak installlibvim \\
     CC='${C_COMPILER_NAME}'  \\
     AR='${AR_NAME}' \\
     OUTDIR='${LIBVIMSRC_DIR}/generated_objs' \\
-    CFLAGS='-w -Iproto'
+    CFLAGS='-w -Iproto -O3 -DNDEBUG'
 ")
 
 add_custom_command(
