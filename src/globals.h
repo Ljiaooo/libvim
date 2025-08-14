@@ -45,6 +45,7 @@ EXTERN unsigned *LineOffset INIT(= NULL);
 EXTERN char_u *LineWraps INIT(= NULL); /* line wraps to next line */
 
 /* libvim API callbacks */
+EXTERN BufferPreviousCallback bufferPreviousCallback INIT(= NULL);
 EXTERN WriteRedirectCallback writeRedirectCallback INIT(= NULL);
 EXTERN AutoCommandCallback autoCommandCallback INIT(= NULL);
 EXTERN BufferUpdateCallback bufferUpdateCallback INIT(= NULL);

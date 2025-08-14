@@ -92,7 +92,14 @@ void vimSetBufferUpdateCallback(BufferUpdateCallback bufferUpdate);
  * Used by SnapVim, vim write file disabled
  * Command leading to file writing will execute copying text to clipboard
  */
- void vimSetWriteRedirectCallback(WriteRedirectCallback writeRedirectCallback);
+void vimSetWriteRedirectCallback(WriteRedirectCallback writeRedirectCallback);
+
+ /**
+  * Used by SnapVim, vim buffer commands are disabled
+  * only ":bprevious", ":bp" work for history navigation
+  */
+void vimSetBufferPreviousCallback(BufferPreviousCallback bufferPreviousCallback);
+
 
 /***
  * Autocommands

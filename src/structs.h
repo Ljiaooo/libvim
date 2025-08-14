@@ -2517,6 +2517,7 @@ typedef struct
   int hidden;
 } optionSet_T;
 
+typedef void (*BufferPreviousCallback)();
 typedef void (*WriteRedirectCallback)();
 typedef void (*BufferUpdateCallback)(bufferUpdate_T bufferUpdate);
 typedef void (*FileWriteFailureCallback)(writeFailureReason_T failureReason, buf_T *buf);

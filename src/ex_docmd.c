@@ -5284,14 +5284,8 @@ ex_doautocmd(exarg_T *eap)
 static void
 ex_bunload(exarg_T *eap)
 {
-  if (NOT_IN_POPUP_WINDOW)
-    return;
-  eap->errmsg = do_bufdel(
-      eap->cmdidx == CMD_bdelete ? DOBUF_DEL
-                                 : eap->cmdidx == CMD_bwipeout ? DOBUF_WIPE
-                                                               : DOBUF_UNLOAD,
-      eap->arg,
-      eap->addr_count, (int)eap->line1, (int)eap->line2, eap->forceit);
+  // modified for SnapVim
+  // Buffers are managed internally by SnapVim
 }
 
 /*
@@ -5301,19 +5295,8 @@ ex_bunload(exarg_T *eap)
 static void
 ex_buffer(exarg_T *eap)
 {
-  if (NOT_IN_POPUP_WINDOW)
-    return;
-  if (*eap->arg)
-    eap->errmsg = e_trailing;
-  else
-  {
-    if (eap->addr_count == 0) /* default is current buffer */
-      goto_buffer(eap, DOBUF_CURRENT, FORWARD, 0);
-    else
-      goto_buffer(eap, DOBUF_FIRST, FORWARD, (int)eap->line2);
-    if (eap->do_ecmd_cmd != NULL)
-      do_cmdline_cmd(eap->do_ecmd_cmd);
-  }
+  // modified for SnapVim
+  // Buffers are managed internally by SnapVim
 }
 
 /*
@@ -5323,9 +5306,8 @@ ex_buffer(exarg_T *eap)
 static void
 ex_bmodified(exarg_T *eap)
 {
-  goto_buffer(eap, DOBUF_MOD, FORWARD, (int)eap->line2);
-  if (eap->do_ecmd_cmd != NULL)
-    do_cmdline_cmd(eap->do_ecmd_cmd);
+  // modified for SnapVim
+  // Buffers are managed internally by SnapVim
 }
 
 /*
@@ -5335,9 +5317,8 @@ ex_bmodified(exarg_T *eap)
 static void
 ex_bnext(exarg_T *eap)
 {
-  goto_buffer(eap, DOBUF_CURRENT, FORWARD, (int)eap->line2);
-  if (eap->do_ecmd_cmd != NULL)
-    do_cmdline_cmd(eap->do_ecmd_cmd);
+  // modified for SnapVim
+  // Buffers are managed internally by SnapVim
 }
 
 /*
@@ -5349,9 +5330,10 @@ ex_bnext(exarg_T *eap)
 static void
 ex_bprevious(exarg_T *eap)
 {
-  goto_buffer(eap, DOBUF_CURRENT, BACKWARD, (int)eap->line2);
-  if (eap->do_ecmd_cmd != NULL)
-    do_cmdline_cmd(eap->do_ecmd_cmd);
+  // modified for SnapVim
+  // Buffers are managed internally by SnapVim
+  if (bufferPreviousCallback != NULL)
+    bufferPreviousCallback();
 }
 
 /*
@@ -5363,9 +5345,8 @@ ex_bprevious(exarg_T *eap)
 static void
 ex_brewind(exarg_T *eap)
 {
-  goto_buffer(eap, DOBUF_FIRST, FORWARD, 0);
-  if (eap->do_ecmd_cmd != NULL)
-    do_cmdline_cmd(eap->do_ecmd_cmd);
+  // modified for SnapVim
+  // Buffers are managed internally by SnapVim
 }
 
 /*
@@ -5375,9 +5356,8 @@ ex_brewind(exarg_T *eap)
 static void
 ex_blast(exarg_T *eap)
 {
-  goto_buffer(eap, DOBUF_LAST, BACKWARD, 0);
-  if (eap->do_ecmd_cmd != NULL)
-    do_cmdline_cmd(eap->do_ecmd_cmd);
+  // modified for SnapVim
+  // Buffers are managed internally by SnapVim
 }
 
 int ends_excmd(int c)
